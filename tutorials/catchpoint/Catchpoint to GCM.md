@@ -69,13 +69,13 @@ Follow the steps in the [Cloud Pub/Sub Tutorial | Cloud Functions](https://cloud
 
 1. 	Execute the following chain of commands in the same order. This is done to update all packages to a new major version.
 
-	$ npm install -g npm-check-updates
+	`$ npm install -g npm-check-updates`
 
-	$ ncu -u
+	`$ ncu -u`
 
-	$ npm update
+	`$ npm update`
 
-	$ npm install
+	`$ npm install`
 
 _Note: Run `npm fund` if prompted
 
