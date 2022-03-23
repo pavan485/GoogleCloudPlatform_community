@@ -61,6 +61,25 @@ Follow the steps in the [Cloud Pub/Sub Tutorial | Cloud Functions](https://cloud
 1.	Set/change the project property in the core section to the current project:
 
         gcloud config set project <your project ID>
+	
+#### Updating node modules
+
+1. Open Google Cloud SDK Shell and navigate to the directory where the NodeJS scripts were extracted.
+`$ cd <path to extracted directory/Integrations.GoogleCloudMonitoring/Stackdriver-Webhook/> `
+
+1. Execute the following chain of commands in the same order. This is done to update all packages to a new major version.
+
+$ npm install -g npm-check-updates
+
+$ ncu -u
+
+$ npm update
+
+$ npm install
+
+_Note: Run `npm fund` if prompted
+
+#### Deploying cloud functions
 
 1.	Run the following command to deploy the Publish Function:  
 
@@ -88,27 +107,7 @@ Follow the steps in the [Cloud Pub/Sub Tutorial | Cloud Functions](https://cloud
 1.	Navigate to [Catchpoint API Detail](https://portal.catchpoint.com/ui/Content/Administration/ApiDetail.aspx). (See [Catchpoint Webhook document](https://support.catchpoint.com/hc/en-us/articles/115005282906) for additional information.)
 1.	Click Add URL under Test Data Webhook
 1.	Input the HTTP Trigger URL you generated in the previous section in the URL field.
-1.	Under "Format" you can choose “JSON” to have Catchpoint send its default data payload in JSON format, or you can choose “Template” if you want to customize the data payload. Steps 5-8 are only necessary if you choose Template.
-1.	Click "Select Template"
-1.	Click "Add New"
-1.	Input a Name for this template and select "JSON" as the format.
-1.	Input valid JSON specifying the format of the payload that will be posted to the Webhook. Each value in the template is set using a Macro, which will be replaced with actual data at runtime. See [Test Data Webhook Macros]((https://support.catchpoint.com/hc/en-us/articles/360008476571)) for all available options. Here is a sample JSON template containing recommended macros:
-
-        {
-        "TestName": "${TestName}",
-        "TestURL": "${testurl}",
-        "TimeStamp": "${timestamp}",
-        "NodeName": "${nodeName}",
-        "PacketLoss": "${pingpacketlosspct}",
-        "RTTAvg": "${pingroundtriptimeavg}",
-        "DNSTime": "${timingdns}", 
-        "Connect": "${timingconnect}", 
-        "SSL": "${timingssl}", 
-        "SendTime": "${timingsend}",
-        "WaitTime": "${timingwait}", 
-        "Total": "${timingtotal}"
-        }
-
+1.	Under "Format" you can choose “JSON” to have Catchpoint send its default data payload in JSON format.
 1.	Click “Save” at the bottom of the page.
 
 ### Set up Cloud Monitoring
